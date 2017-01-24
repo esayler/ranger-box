@@ -14,6 +14,6 @@ var expect = chai.expect
 describe('App', () => {
   it('should render text', () => {
     const wrapper = render(<App />)
-    expect(wrapper.find('h1')).to.contain.text('React Boilerplate')
+    expect(wrapper.find('h1')).to.contain.text('Chuck Norris Joke Machine')
   })
 })

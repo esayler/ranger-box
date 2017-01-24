@@ -1,1 +1,10 @@
-@import 'normalize'
+@import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Karla:400,700');
+@import 'normalize';
+
+body {
+  font-family: 'Karla', sans-serif;
+}
+
+.title {
+  font-family: 'Bungee Shade', cursive;
+}
