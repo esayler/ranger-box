@@ -5,11 +5,11 @@ module.exports = function (config) {
     basePath: '',
     frameworks: ['mocha', 'chai', 'sinon'],
     files: [
-      'test/**/*.spec.jsx'
+      'src/**/*.spec.jsx'
     ],
     exclude: [],
     preprocessors: {
-      'test/**/*.jsx': ['webpack', 'sourcemap']
+      'src/**/*.jsx': ['webpack', 'sourcemap']
     },
     webpack: { // kind of a copy of your webpack config
       devtool: 'eval-source-map', // just do inline source maps instead of the default

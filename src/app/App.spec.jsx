@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'enzyme'
-import App from '../src/components/App'
+import App from './App'
 import chai from 'chai'
 import chaiEnzyme from 'chai-enzyme'
 import chaiJsx from 'chai-jsx'

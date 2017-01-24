@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-import Root from './components/Root'
+import Root from './root/Root'
 
 require('./styles/main.scss')
 
@@ -14,7 +14,7 @@ ReactDOM.render(
 )
 
 if (module.hot) {
-  module.hot.accept('./components/App', () => {
+  module.hot.accept('./app/App', () => {
     ReactDOM.render(
       <AppContainer>
         <Root />
