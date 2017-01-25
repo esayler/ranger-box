@@ -65,7 +65,7 @@ export default class App extends React.Component {
   render () {
     return (
       <div>
-        <Header />
+        <Header handleSettingsButtonClick={this.goToLink.bind(this, '/settings')} />
         <Joke className='random-joke-box' data={this.state.randomJoke.value} />
         <div className='user-input'>
           <Button
