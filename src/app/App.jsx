@@ -13,27 +13,33 @@ export default class App extends React.Component {
       draftNum: '',
       jokes: [],
       gotRandomJoke: false,
+      nameValue: '',
       randomJoke: {
         value: {
           joke: ''
         }
-      }
+      },
+      name: '',
+      parentalControls: false
     }
     this.getRandomJokes = this.getRandomJokes.bind(this)
+    this.setName = this.setName.bind(this)
+    this.resetName = this.resetName.bind(this)
+    this.updateNameDraftState = this.updateNameDraftState.bind(this)
+    this.handleParentalControlsChange = this.handleParentalControlsChange.bind(this)
   }
 
   componentDidMount () {
-    this.setState({randomJoke: this.getRandomJokes() })
+    this.setState({ randomJoke: this.getRandomJokes() })
   }
 
   getRandomJokes () {
     const num = this.state.gotRandomJoke ? this.state.numJokesToGet : 1
     let str = num && num !== 1 ? parseInt(num, 10) : ''
-    let array = []
 
-    console.log(`http://api.icndb.com/jokes/random/${str}`)
-
-    fetch(`http://api.icndb.com/jokes/random/${str}?escape=javascript`)
+    let exclude = this.state.parentalControls ? '&exclude=[explicit]' : ''
+    console.log(`http://api.icndb.com/jokes/random/${str}?escape=javascript${exclude}`)
+    fetch(`http://api.icndb.com/jokes/random/${str}?escape=javascript${exclude}`)
       .then(response => {
         response.json()
           .then(data => {
@@ -62,11 +68,32 @@ export default class App extends React.Component {
     this.setState({draftNum: ''})
   }
 
+  setName () {
+    this.setState({name: this.state.nameValue})
+  }
+
+  resetName () {
+    this.setState({name: ''})
+  }
+
+  updateNameDraftState (event) {
+    this.setState({nameValue: event.target.value})
+  }
+
+  handleParentalControlsChange (e) {
+    const target = e.target
+    const value = target.type === 'checkbox' ? target.checked : target.value
+    const name = target.name
+    this.setState({
+      [name]: value
+    })
+  }
+
   render () {
     return (
       <div>
         <Header handleSettingsButtonClick={this.goToLink.bind(this, '/settings')} />
-        <Joke className='random-joke-box' data={this.state.randomJoke.value} />
+        <Joke className='random-joke-box' data={this.state.randomJoke ? this.state.randomJoke.value : null} />
         <div className='user-input'>
           <Button
             className='btn-get-jokes'
@@ -86,7 +113,14 @@ export default class App extends React.Component {
             handleClick={this.goToLink.bind(this, '/favorites')}
           />
         </div>
-        {React.cloneElement(this.props.children, { jokes: this.state.jokes })}
+        {React.cloneElement(this.props.children,
+          { jokes: this.state.jokes,
+            setName: this.setName,
+            nameValue: this.state.nameValue,
+            resetName: this.resetName,
+            updateNameDraftState: this.updateNameDraftState,
+            parentalControls: this.state.parentalControls,
+            handleParentalControlsChange: this.handleParentalControlsChange })}
       </div>
     )
   }

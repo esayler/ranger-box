@@ -4,7 +4,8 @@ const Joke = (props) => {
 
   return (
     <div className={props.className}>
-      <p>{props.data ? props.data.joke: 'Getting Joke...'}</p>
+      <p>{props.data ? props.data.id : ' '}<br/></p>
+      <p>{props.data ? props.data.joke : 'Getting Joke...'}</p>
     </div>
   )
 }
