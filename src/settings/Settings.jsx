@@ -27,14 +27,16 @@ export default class Settings extends React.Component {
           text='Reset'
           handleClick={this.props.resetName}
         />
-        Parental Controls On:
-        <input
-          className='checkbox'
-          name='parentalControls'
-          type="checkbox"
-          checked={this.props.parentalControls}
-          onChange={this.props.handleParentalControlsChange}
-        />
+        <div className='parental-controls'>
+          Parental Controls On:
+          <input
+            className='checkbox'
+            name='parentalControls'
+            type="checkbox"
+            checked={this.props.parentalControls}
+            onChange={this.props.handleParentalControlsChange}
+          />
+        </div>
       </div>
     )
   }
