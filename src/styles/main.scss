@@ -1,10 +1,27 @@
 @import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Karla:400,700');
 @import 'normalize';
 
+$body-text-color: #fff;
+$body-bg-color: #18353f;
+$header-bg-color: #5e7178;
+$btn-bg-color: #c0c0c0;
+$btn-hover-bg-color: $body-text-color;
+$joke-box-bg-color: #132a32;
+
+
+@mixin button-input-style {
+  border: 0;
+  border-radius: 10px;
+  font-size: 12px;
+  margin: 10px;
+  outline: 0;
+  padding: 10px 20px;
+}
+
 body {
+  background: $body-bg-color;
+  color: $body-text-color;
   font-family: 'Karla', sans-serif;
-  background: #18353F;
-  color: #FFF;
 }
 
 .title {
@@ -15,49 +32,47 @@ body {
 }
 
 .header {
-  background: #5E7178;
+  background: $header-bg-color;
   height: 90px;
 }
 
-.joke-box {
-  border: 1px dotted #FFF;
-}
-
-.favorite {
-  background: #18353F;
-}
-
 .btn {
-  background: #C0C0C0;
+  @include button-input-style;
+  background: $btn-bg-color;
 
   &:hover {
-    background: rgb(255,255,255);
+    background: $btn-hover-bg-color;
   }
 }
 
 .joke-list {
-  text-align: center;
   margin: 0 auto;
+  text-align: center;
+}
+
+@mixin joke {
+  padding: 10px;
+  text-align: center;
 }
 
 .random-joke-box {
-  border: 1px dotted #FFF;
+  @include joke;
+  border: 1px dotted $body-text-color;
   margin: 10px auto;
-  padding: 10px;
-  text-align: center;
 }
 
 .joke-box {
-  text-align: center;
-  display: inline-flex;
-  justify-content: center;
+  @include joke;
   align-content: center;
-  width: 30%;
-  margin: 10px;
+  background: $joke-box-bg-color;
+  display: inline-flex;
   flex-wrap: wrap;
-  // margin: 20px;
+  justify-content: center;
+  margin: 10px;
+  width: 30%;
+}
 
-  background: #132A32;
-  border: none;
-  padding: 10px;
+
+input {
+  @include button-input-style;
 }
