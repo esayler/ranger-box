@@ -67,24 +67,26 @@ export default class App extends React.Component {
       <div>
         <Header />
         <Joke className='random-joke-box' data={this.state.randomJoke.value} />
-        <Button
-          className='btn-get-jokes'
-          text='Get Jokes'
-          handleClick={this.handleClick.bind(this)}
-        />
-        <Input
-          type='number'
-          placeholder={this.state.numJokesToGet}
-          value={this.state.draftNum}
-          updateState={this.updateState.bind(this)}
-          handleKeyPress={(e) => {}}
-        />
-        <Button
-          className='btn-get-favorites'
-          text='Get Favorites'
-          handleClick={this.goToLink.bind(this, '/favorites')}
-        />
-      {React.cloneElement(this.props.children, { jokes: this.state.jokes })}
+        <div className='user-input'>
+          <Button
+            className='btn-get-jokes'
+            text='Get Jokes'
+            handleClick={this.handleClick.bind(this)}
+          />
+          <Input
+            type='number'
+            placeholder={this.state.numJokesToGet}
+            value={this.state.draftNum}
+            updateState={this.updateState.bind(this)}
+            handleKeyPress={(e) => {}}
+          />
+          <Button
+            className='btn-get-favorites'
+            text='Get Favorites'
+            handleClick={this.goToLink.bind(this, '/favorites')}
+          />
+        </div>
+        {React.cloneElement(this.props.children, { jokes: this.state.jokes })}
       </div>
     )
   }
