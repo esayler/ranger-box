@@ -3,8 +3,61 @@
 
 body {
   font-family: 'Karla', sans-serif;
+  background: #18353F;
+  color: #FFF;
 }
 
 .title {
-  font-family: 'Bungee Shade', cursive;
+  font-family: 'Bungee Shade', sans-serif;
+  margin-top: 0;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.header {
+  background: #5E7178;
+  height: 90px;
+}
+
+.joke-box {
+  border: 1px dotted #FFF;
+}
+
+.favorite {
+  background: #18353F;
+}
+
+.btn {
+  background: #C0C0C0;
+
+  &:hover {
+    background: rgb(255,255,255);
+  }
+}
+
+.joke-list {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.random-joke-box {
+  border: 1px dotted #FFF;
+  margin: 10px auto;
+  padding: 10px;
+  text-align: center;
+}
+
+.joke-box {
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-content: center;
+  width: 30%;
+  margin: 10px;
+  flex-wrap: wrap;
+  // margin: 20px;
+
+  background: #132A32;
+  border: none;
+  padding: 10px;
 }

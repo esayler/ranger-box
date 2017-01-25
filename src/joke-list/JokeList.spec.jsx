@@ -1,6 +1,6 @@
 import React from 'react'
-import { render, mount, shallow } from 'enzyme'
-import App from './App'
+import { render } from 'enzyme'
+import JokeList from './JokeList'
 import chai from 'chai'
 import chaiEnzyme from 'chai-enzyme'
 import chaiJsx from 'chai-jsx'
@@ -11,8 +11,8 @@ chai.use(chaiJsx)
 var expect = chai.expect
 // let should = chai.should()
 
-describe('<App />', () => {
-  it.skip('should render', () => {
-    const wrapper = shallow(<App />)
+describe('<JokeList />', () => {
+  it.skip('should render text', () => {
+    const wrapper = render(<JokeList />)
   })
 })
