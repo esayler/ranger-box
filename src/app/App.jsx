@@ -19,7 +19,10 @@ export default class App extends React.Component {
           joke: ''
         }
       },
-      name: '',
+      name: {
+        first: '',
+        last: ''
+      },
       parentalControls: false
     }
     this.getRandomJokes = this.getRandomJokes.bind(this)
@@ -38,8 +41,16 @@ export default class App extends React.Component {
     let str = num && num !== 1 ? parseInt(num, 10) : ''
 
     let exclude = this.state.parentalControls ? '&exclude=[explicit]' : ''
-    console.log(`http://api.icndb.com/jokes/random/${str}?escape=javascript${exclude}`)
-    fetch(`http://api.icndb.com/jokes/random/${str}?escape=javascript${exclude}`)
+
+    let firstName = this.state.name.first
+    let lastName = this.state.name.last
+
+    let name = firstName && lastName
+      ? `&firstName=${firstName}&lastName=${lastName}`
+      : ''
+
+    // console.log(`http://api.icndb.com/jokes/random/${str}?escape=javascript${exclude}${name}`)
+    fetch(`http://api.icndb.com/jokes/random/${str}?escape=javascript${exclude}${name}`)
       .then(response => {
         response.json()
           .then(data => {
@@ -69,11 +80,26 @@ export default class App extends React.Component {
   }
 
   setName () {
-    this.setState({name: this.state.nameValue})
+    if (this.state.nameValue === '') {
+      return
+    }
+    const nameArray = this.state.nameValue.split(' ')
+    this.setState({
+      name: {
+        first: nameArray[0],
+        last: nameArray[1]
+      }
+    })
   }
 
   resetName () {
-    this.setState({name: ''})
+    this.setState({
+      name: {
+        first: '',
+        last: ''
+      },
+      nameValue: ''
+    })
   }
 
   updateNameDraftState (event) {
