@@ -3,9 +3,11 @@ import Joke from '../joke/Joke'
 import some from 'lodash/some'
 
 const JokeList = (props) => {
+  const jokes = props.jokes.map(item => <Joke key={item.id} starred={isStarred(props, item)} className='joke-box' data={item} saveFavorite={props.saveFavorite} />)
+
   return (
     <div className='joke-list'>
-      { props.jokes.map(item => <Joke key={item.id} starred={isStarred(props, item)} className='joke-box' data={item} saveFavorite={props.saveFavorite} />) }
+        {jokes}
     </div>
   )
 }

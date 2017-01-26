@@ -141,7 +141,7 @@ export default class App extends React.Component {
   render () {
     return (
       <div>
-        <Header handleSettingsButtonClick={this.goToLink.bind(this, '/settings')} />
+        <Header name={this.state.name} handleSettingsButtonClick={this.goToLink.bind(this, '/settings')} />
         <Joke
           className='random-joke-box'
           data={this.state.randomJoke ? this.state.randomJoke.value : null}
@@ -155,6 +155,7 @@ export default class App extends React.Component {
             handleClick={this.handleClick.bind(this)}
           />
           <Input
+            className='input-num'
             type='number'
             placeholder={this.state.numJokesToGet}
             value={this.state.draftNum}

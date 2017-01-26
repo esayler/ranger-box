@@ -3,7 +3,7 @@ import Joke from '../joke/Joke'
 
 const Favorites = (props) => {
   return (
-    <div>
+    <div className='favorites-list'>
       { props.favorites.length !== 0
           ? props.favorites.map(item => {
             return (
