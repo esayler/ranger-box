@@ -9,7 +9,7 @@ module.exports = {
     'webpack/hot/only-dev-server',
     './src/index.jsx'
   ],
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
   devServer: {
     hot: true,
     contentBase: resolve(__dirname, 'public'),
@@ -29,11 +29,10 @@ module.exports = {
     chunks: false
   },
   externals: {
-    'cheerio': 'window',
+    // 'cheerio': 'window',
     'react/addons': 'react',
-    'jsdom': 'window',
     'react/lib/ExecutionEnvironment': 'react',
-    'react/lib/ReactContext': 'react'
+    'react/lib/ReactContext': 'react',
   },
   module: {
     rules: [
@@ -66,6 +65,6 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
+    new webpack.NamedModulesPlugin()
   ]
 }

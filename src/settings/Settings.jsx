@@ -18,11 +18,13 @@ export default class Settings extends React.Component {
           handleKeyPress={(e) => {}}
         />
         <Button
+          disabled={this.props.nameValue === ''}
           className='btn-set-name'
           text='Set'
           handleClick={this.props.setName}
         />
         <Button
+          disabled={this.props.name.first === ''}
           className='btn-reset-name'
           text='Reset'
           handleClick={this.props.resetName}

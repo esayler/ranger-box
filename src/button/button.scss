@@ -1,9 +1,24 @@
 .btn {
   @include button-input-style;
-  background: $btn-bg-color;
+  background: #E0E0E0;
 
   &:hover {
     background: $btn-hover-bg-color;
+  }
+
+  &:active {
+    background: $btn-bg-color;
+    color: black;
+  }
+
+
+  &[disabled] {
+    background: #616161;
+    color: #BDBDBD;
+
+    &:hover {
+      filter: opacity(100%);
+    }
   }
 }
 
@@ -14,14 +29,13 @@
   margin: 0;
   // text-align: center;
 
-
   &:hover {
     background: 0;
-    filter: opacity(75%);
+    color: $starred-color;
   }
 
   &:active {
-    filter: opacity(50%);
+    color: #FFC107;
   }
 }
 

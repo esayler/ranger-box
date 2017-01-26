@@ -172,6 +172,7 @@ export default class App extends React.Component {
           { jokes: this.state.jokes,
             favorites: this.state.favorites,
             saveFavorite: this.saveFavorite,
+            name: this.state.name,
             setName: this.setName,
             nameValue: this.state.nameValue,
             resetName: this.resetName,
