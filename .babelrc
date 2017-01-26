@@ -3,6 +3,9 @@
       "presets": [
         "latest",
         "react"
+      ],
+      "plugins": [
+        "lodash"
       ]
     }
   },
@@ -12,6 +15,7 @@
     ["latest", { "modules": false }]
   ],
   "plugins": [
-    "react-hot-loader/babel"
+    "react-hot-loader/babel",
+    "lodash"
   ]
 }

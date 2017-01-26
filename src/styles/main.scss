@@ -28,6 +28,11 @@ body {
   background: $body-bg-color;
   color: $body-text-color;
   font-family: 'Karla', sans-serif;
+  text-align: center;
+}
+
+.error-no-favs {
+  font-size: 2em;
 }
 
 .title {
@@ -49,6 +54,26 @@ body {
   &:hover {
     background: $btn-hover-bg-color;
   }
+}
+
+.btn-star {
+  background: 0;
+  color: white;
+  padding: 0;
+  text-align: center;
+
+  &:hover {
+    background: 0;
+    filter: opacity(75%);
+  }
+
+  &:active {
+    filter: opacity(50%);
+  }
+}
+
+.starred {
+  color: yellow;
 }
 
 .btn-settings {
@@ -95,9 +120,17 @@ body {
   width: 30%;
 }
 
-// .num-input {
-//
-// }
+.input-num {
+  width: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 input {
   @include button-input-style;

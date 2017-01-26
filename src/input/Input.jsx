@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 
 export default class Input extends Component {
   render () {
-    const { type, placeholder, value, updateState, handleKeyPress } = this.props
+    const { type, placeholder, value, updateState, handleKeyPress, className } = this.props
     return (
       <input
+        className={className}
         type={type}
         placeholder={placeholder}
         value={value}

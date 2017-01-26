@@ -9,8 +9,10 @@ import Favorites from './favorites/Favorites'
 const routes = (
   <Route path='/' component={App}>
     <IndexRoute component={Home} />
+
     <Route path='/jokes' component={JokeList} />
     <Route path='/settings' component={Settings} />
+
     <Route path='/favorites' component={Favorites} />
   </Route>
 )

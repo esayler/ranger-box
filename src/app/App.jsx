@@ -4,11 +4,14 @@ import Button from '../button/Button'
 import Input from '../input/Input'
 import Joke from '../joke/Joke'
 import { browserHistory } from 'react-router'
+import some from 'lodash/some'
+import reject from 'lodash/reject'
 
 export default class App extends React.Component {
   constructor () {
     super()
     this.state = {
+      favorites: [],
       numJokesToGet: 5,
       draftNum: '',
       jokes: [],
@@ -30,6 +33,8 @@ export default class App extends React.Component {
     this.resetName = this.resetName.bind(this)
     this.updateNameDraftState = this.updateNameDraftState.bind(this)
     this.handleParentalControlsChange = this.handleParentalControlsChange.bind(this)
+    this.saveFavorite = this.saveFavorite.bind(this)
+    this.isStarred = this.isStarred.bind(this)
   }
 
   componentDidMount () {
@@ -49,7 +54,6 @@ export default class App extends React.Component {
       ? `&firstName=${firstName}&lastName=${lastName}`
       : ''
 
-    // console.log(`http://api.icndb.com/jokes/random/${str}?escape=javascript${exclude}${name}`)
     fetch(`http://api.icndb.com/jokes/random/${str}?escape=javascript${exclude}${name}`)
       .then(response => {
         response.json()
@@ -57,7 +61,6 @@ export default class App extends React.Component {
             if (num === 1 && !this.state.gotRandomJoke) {
               this.setState({randomJoke: data, gotRandomJoke: true})
             } else {
-              console.log('getting jokes')
               this.setState({jokes: data.value})
             }
           })
@@ -115,11 +118,36 @@ export default class App extends React.Component {
     })
   }
 
+  saveFavorite (joke) {
+    let favorites = this.state.favorites
+
+    if (!some(favorites, joke)) {
+      favorites.push(joke)
+      this.setState({
+        favorites: favorites
+      })
+    } else {
+      this.setState({
+        favorites: reject(favorites, joke)
+      })
+    }
+  }
+
+  isStarred (favorites, item) {
+    const found = some(favorites, ['id', item.id])
+    return found
+  }
+
   render () {
     return (
       <div>
         <Header handleSettingsButtonClick={this.goToLink.bind(this, '/settings')} />
-        <Joke className='random-joke-box' data={this.state.randomJoke ? this.state.randomJoke.value : null} />
+        <Joke
+          className='random-joke-box'
+          data={this.state.randomJoke ? this.state.randomJoke.value : null}
+          saveFavorite={this.saveFavorite}
+          starred={this.isStarred(this.state.favorites, this.state.randomJoke.value)}
+        />
         <div className='user-input'>
           <Button
             className='btn-get-jokes'
@@ -135,12 +163,14 @@ export default class App extends React.Component {
           />
           <Button
             className='btn-get-favorites'
-            text='Get Favorites'
+            text='Favorites'
             handleClick={this.goToLink.bind(this, '/favorites')}
           />
         </div>
         {React.cloneElement(this.props.children,
           { jokes: this.state.jokes,
+            favorites: this.state.favorites,
+            saveFavorite: this.saveFavorite,
             setName: this.setName,
             nameValue: this.state.nameValue,
             resetName: this.resetName,
