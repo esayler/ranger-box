@@ -1,0 +1,44 @@
+.btn {
+  @include button-input-style;
+  background: $btn-bg-color;
+
+  &:hover {
+    background: $btn-hover-bg-color;
+  }
+}
+
+.btn-star {
+  background: 0;
+  color: white;
+  padding: 0;
+  margin: 0;
+  // text-align: center;
+
+
+  &:hover {
+    background: 0;
+    filter: opacity(75%);
+  }
+
+  &:active {
+    filter: opacity(50%);
+  }
+}
+
+
+.starred {
+  color: $starred-color;
+}
+
+.btn-settings {
+  border-radius: 50%;
+  float: right;
+  height: 60px;
+  padding: 5px;
+  width: 60px;
+}
+
+.btn-get-favorites {
+  display: block;
+  margin: 0 auto;
+}

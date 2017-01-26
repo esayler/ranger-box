@@ -1,0 +1,7 @@
+.favorites-list {
+  @include list-flex;
+}
+
+.error-no-favs {
+  font-size: 2em;
+}

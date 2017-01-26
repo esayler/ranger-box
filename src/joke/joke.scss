@@ -1,0 +1,37 @@
+.joke-box--text {
+  margin-left: auto;
+}
+
+.random-joke-box-text {
+  align-self: flex-end;
+}
+
+.random-joke-box--joke-button {
+  align-self: flex-end;
+}
+
+.joke-box--joke-button {
+  align-self: flex-end;
+}
+
+
+
+.random-joke-box {
+  display: flex;
+  flex-direction: column;
+
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  @include joke;
+  border: 1px dotted $body-text-color;
+  margin: 10px auto;
+}
+
+.joke-box {
+  @include joke;
+  background: $joke-box-bg-color;
+  display: flex;
+  flex-direction: flex-start;
+  margin: 10px;
+  width: 30%;
+}

@@ -1,28 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Karla:400,700');
 @import 'normalize';
-
-$body-text-color: #fff;
-$body-bg-color: #18353f;
-$header-bg-color: #5e7178;
-$btn-bg-color: #c0c0c0;
-$btn-hover-bg-color: $body-text-color;
-$joke-box-bg-color: #132a32;
-$starred-color: #ffeb3b;
-
-@mixin button-input-style {
-  border: 0;
-  border-radius: 10px;
-  font-size: 12px;
-  margin: 10px;
-  outline: 0;
-  padding: 10px 20px;
-}
-
-.settings-bar {
-  background: $joke-box-bg-color;
-  margin-top: 20px;
-  text-align: center;
-}
+@import './variables';
+@import './mixins';
+@import '../button/button';
+@import '../favorites/favorites';
+@import '../header/header';
+@import '../input/input';
+@import '../joke/joke';
+@import '../joke-list/joke-list';
+@import '../settings/settings';
 
 body {
   background: $body-bg-color;
@@ -31,135 +17,18 @@ body {
   text-align: center;
 }
 
-.error-no-favs {
-  font-size: 2em;
-}
-
-.title {
-  font-family: 'Bungee Shade', sans-serif;
-  margin-top: 0;
-  padding-top: 20px;
-  text-align: center;
-}
-
-.header {
-  background: $header-bg-color;
-  height: 90px;
-}
-
-
-
-.btn {
-  @include button-input-style;
-  background: $btn-bg-color;
-
-  &:hover {
-    background: $btn-hover-bg-color;
-  }
-}
-
-.btn-star {
-  background: 0;
-  color: white;
-  padding: 0;
-  margin: 0;
-  // text-align: center;
-
-
-  &:hover {
-    background: 0;
-    filter: opacity(75%);
+@media (max-width: 600px) {
+  .title {
+    font-size: 1.5em;
   }
 
-  &:active {
-    filter: opacity(50%);
+  .joke-list,
+  .favorites-list {
+    display: block;
   }
-}
 
-
-.starred {
-  color: $starred-color;
-}
-
-.btn-settings {
-  border-radius: 50%;
-  float: right;
-  height: 60px;
-  padding: 5px;
-  width: 60px;
-}
-
-.user-input {
-  text-align: center;
-}
-
-.btn-get-favorites {
-  display: block;
-  margin: 0 auto;
-}
-
-.joke-list,
-.favorites-list {
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 20px auto;
-}
-
-.joke-box--text {
-  margin-left: 20px;
-}
-
-.random-joke-box-text {
-  align-self: flex-end;
-}
-
-.random-joke-box--joke-button {
-  align-self: flex-end;
-}
-
-.joke-box--joke-button {
-  align-self: flex-end;
-}
-
-
-@mixin joke {
-  padding: 10px;
-  text-align: center;
-}
-
-.random-joke-box {
-  display: flex;
-  flex-direction: column;
-
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  @include joke;
-  border: 1px dotted $body-text-color;
-  margin: 10px auto;
-}
-
-.joke-box {
-  @include joke;
-  background: $joke-box-bg-color;
-  display: flex;
-  flex-direction: flex-start;
-  margin: 10px;
-  width: 30%;
-}
-
-.input-num {
-  width: 20px;
-  padding: 10px;
-  text-align: center;
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input {
-  @include button-input-style;
+  .joke-box {
+    width: 90%;
+    margin: 20px;
+  }
 }
