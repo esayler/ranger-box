@@ -1,3 +1,7 @@
 {
-  "extends": ["standard", "standard-react"]
+  "extends": ["standard", "standard-react"],
+  "jsx-no-bind": [1, {
+    "allowArrowFunctions": true
+  }
+  ]
 }

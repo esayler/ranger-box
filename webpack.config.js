@@ -9,7 +9,7 @@ module.exports = {
     'webpack/hot/only-dev-server',
     './src/index.jsx'
   ],
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
   devServer: {
     hot: true,
     contentBase: resolve(__dirname, 'public'),

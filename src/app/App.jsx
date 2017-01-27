@@ -64,18 +64,14 @@ export default class App extends React.Component {
     })
   }
 
-  goToLink (path) {
-    browserHistory.push(path)
-  }
-
-  updateState (e) {
+  updateInputNumState (e) {
     this.setState({ draftNum: e.target.value })
   }
 
   handleClick () {
     this.setState({numJokesToGet: this.state.draftNum || this.state.numJokesToGet})
     this.getRandomJokes()
-    this.goToLink('/jokes')
+    browserHistory.push('/jokes')
     this.setState({draftNum: ''})
   }
 
@@ -140,7 +136,7 @@ export default class App extends React.Component {
       <div>
         <Header
           name={this.state.name}
-          handleSettingsButtonClick={this.goToLink.bind(this, '/settings')}
+          handleSettingsButtonClick={() => browserHistory.push('/settings')}
           buttonText='Settings'
         />
         <Joke
@@ -153,20 +149,20 @@ export default class App extends React.Component {
           <Button
             className='btn-get-jokes'
             text='Get Jokes'
-            handleClick={this.handleClick.bind(this)}
+            handleClick={() => this.handleClick()}
           />
           <Input
             className='input-num'
             type='number'
             placeholder={this.state.numJokesToGet}
             value={this.state.draftNum}
-            updateState={this.updateState.bind(this)}
+            updateState={(e) => this.updateInputNumState(e)}
             handleKeyPress={(e) => {}}
           />
           <Button
             className='btn-get-favorites'
             text='Favorites'
-            handleClick={this.goToLink.bind(this, '/favorites')}
+            handleClick={() => browserHistory.push('/favorites')}
           />
         </div>
         {React.cloneElement(this.props.children,
@@ -188,5 +184,5 @@ export default class App extends React.Component {
 }
 
 App.propTypes = {
-  children: React.PropTypes.element
+  children: React.PropTypes.element.isRequired
 }

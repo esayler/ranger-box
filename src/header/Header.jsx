@@ -14,4 +14,13 @@ const Header = ({buttonText, handleSettingsButtonClick, name}) => {
   )
 }
 
+Header.propTypes = {
+  buttonText: React.PropTypes.string,
+  handleSettingsButtonClick: React.PropTypes.func,
+  name: React.PropTypes.shape({
+    first: React.PropTypes.string,
+    last: React.PropTypes.string
+  })
+}
+
 export default Header

@@ -12,7 +12,7 @@ const Favorites = (props) => {
                 starred
                 className='joke-box'
                 data={item}
-                isFavorite={true}
+                isFavorite
                 saveFavorite={props.saveFavorite} />
             )
           })
@@ -21,8 +21,11 @@ const Favorites = (props) => {
   )
 }
 
-// Favorites.propTypes = {
-//   favorites: React.propTypes.arrayOf(React.PropTypes.object)
-// }
+Favorites.propTypes = {
+  favorites: React.PropTypes.arrayOf(React.PropTypes.object),
+  isFavorite: React.PropTypes.bool,
+  saveFavorite: React.PropTypes.func
+
+}
 
 export default Favorites
