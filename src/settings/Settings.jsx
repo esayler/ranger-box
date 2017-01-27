@@ -11,6 +11,7 @@ export default class Settings extends React.Component {
       <div className='settings-bar'>
         Set Name:
         <Input
+          className='name-input'
           type='text'
           placeholder='Chuck Norris'
           value={this.props.nameValue}

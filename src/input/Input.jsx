@@ -5,7 +5,7 @@ export default class Input extends Component {
     const { type, placeholder, value, updateState, handleKeyPress, className } = this.props
     return (
       <input
-        className={className}
+        className={`input ${className}`}
         type={type}
         placeholder={placeholder}
         value={value}

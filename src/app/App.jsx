@@ -7,7 +7,6 @@ import { browserHistory } from 'react-router'
 import some from 'lodash/some'
 import reject from 'lodash/reject'
 import axios from 'axios'
-import Home from '../home/Home'
 
 export default class App extends React.Component {
   constructor () {
@@ -74,7 +73,7 @@ export default class App extends React.Component {
   }
 
   handleClick () {
-    this.setState({numJokesToGet: this.state.draftNum || 5})
+    this.setState({numJokesToGet: this.state.draftNum || this.state.numJokesToGet})
     this.getRandomJokes()
     this.goToLink('/jokes')
     this.setState({draftNum: ''})
