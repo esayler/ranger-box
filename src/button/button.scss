@@ -1,6 +1,6 @@
 .btn {
   @include button-input-style;
-  background: #E0E0E0;
+  background: $btn-bg-color;
 
   &:hover {
     background: $btn-hover-bg-color;
@@ -13,21 +13,16 @@
 
 
   &[disabled] {
-    background: #616161;
-    color: #BDBDBD;
-
-    &:hover {
-      filter: opacity(100%);
-    }
+    background: $btn-disabled-bg-color;
+    color: $btn-disabled-text-color;
   }
 }
 
 .btn-star {
   background: 0;
-  color: white;
-  padding: 0;
+  color: $unstarred-color;
   margin: 0;
-  // text-align: center;
+  padding: 0;
 
   &:hover {
     background: 0;
@@ -35,7 +30,7 @@
   }
 
   &:active {
-    color: #FFC107;
+    color: $star-active-color;
   }
 }
 
