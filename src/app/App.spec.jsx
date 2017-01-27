@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, mount } from 'enzyme'
 import App from './App'
-import Header from '../header/Header'
+import Home from '../home/Home'
 import chai from 'chai'
 import chaiEnzyme from 'chai-enzyme'
 import chaiJsx from 'chai-jsx'
@@ -13,11 +13,11 @@ var expect = chai.expect
 
 describe('<App />', () => {
   it('should render', () => {
-    const wrapper = mount(<App children={<Header name='' />} />)
+    const wrapper = mount(<App children={<Home />} />)
   })
 
   it('renders as a <div>', () => {
-    let wrapper = render(<App children={<Header name='' />} />)
+    let wrapper = render(<App children={<Home />} />)
     expect(wrapper.find('div')).to.exist
   })
 })

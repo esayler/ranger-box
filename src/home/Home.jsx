@@ -7,7 +7,9 @@ import Joke from '../joke/Joke'
 export default class Home extends React.Component {
   render () {
     return (
-      <div>Home</div>
+      <div id='home'>
+        <p className='welcome'>Click Get Jokes!</p>
+      </div>
     )
   }
 }

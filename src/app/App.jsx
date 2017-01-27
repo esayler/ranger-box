@@ -7,6 +7,7 @@ import { browserHistory } from 'react-router'
 import some from 'lodash/some'
 import reject from 'lodash/reject'
 import axios from 'axios'
+import Home from '../home/Home'
 
 export default class App extends React.Component {
   constructor () {
