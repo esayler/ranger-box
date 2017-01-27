@@ -1,3 +1,5 @@
+/* eslint-env node, mocha */
+
 import React from 'react'
 import { render, mount, shallow } from 'enzyme'
 import App from './App'
@@ -18,12 +20,17 @@ var expect = chai.expect
 
 describe('<App />', () => {
   let wrapper
+  let location = {
+    pathname: '/',
+    search: '',
+    query: '',
+    state: ''
+  }
 
   describe('when visiting the home page', () => {
-
     beforeEach(() => {
       wrapper = shallow(
-        <App children={<Home />} />
+        <App children={<Home />} location={location} />
       )
     })
 
@@ -56,7 +63,7 @@ describe('<App />', () => {
     let numJokesToGetUserInput
     beforeEach(() => {
       wrapper = mount(
-        <App children={<Home />} />
+        <App children={<Home />} location={location} />
       )
       getJokesBtn = wrapper.find('.btn .btn-get-jokes')
       numJokesToGetUserInput = wrapper.find('.input .input-num')
@@ -108,7 +115,7 @@ describe('<App />', () => {
       const placeholder = (wrapper).state('numJokesToGet')
       expect(numJokesToGetUserInput).to.have.prop('placeholder', placeholder)
     })
-    
+
     it.skip('should clear state of draftNum', () => {
       numJokesToGetUserInput.simulate('change', {
         target: {
@@ -123,11 +130,18 @@ describe('<App />', () => {
     })
   })
 
-  describe('"Settings" button', () => {
+  describe('"Settings" button in header when not on settings page', () => {
     let settingsBtn
+    let location = {
+      pathname: '/',
+      search: '',
+      query: '',
+      state: ''
+    }
+
     beforeEach(() => {
       wrapper = mount(
-        <App children={<Home />} />
+        <App children={<Home />} location={location} />
       )
       settingsBtn = wrapper.find('.btn .btn-settings')
     })
@@ -135,9 +149,26 @@ describe('<App />', () => {
     it('should have text showing "Settings"', () => {
       expect(settingsBtn).to.contain.text('Settings')
     })
+  })
 
-    it('should have text showing "Jokes" when clicked', () => {
-      settingsBtn.simulate('click')
+  describe('"Settings" button in header when on settings page', () => {
+    let settingsBtn
+    let location = {
+      pathname: '/settings',
+      search: '',
+      query: '',
+      state: ''
+    }
+
+    beforeEach(() => {
+      wrapper = mount(
+        <App children={<Home />} location={location} />
+      )
+      settingsBtn = wrapper.find('.btn .btn-settings')
+    })
+
+    it('should have text showing "Jokes"', () => {
+      // settingsBtn.simulate('click')
       expect(settingsBtn).to.contain.text('Jokes')
     })
   })

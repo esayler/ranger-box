@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'enzyme'
+import { render, mount } from 'enzyme'
 import Input from './Input'
 import chai from 'chai'
 import chaiEnzyme from 'chai-enzyme'
@@ -12,7 +12,9 @@ var expect = chai.expect
 // let should = chai.should()
 
 describe('<Input />', () => {
-  it.skip('should render text', () => {
-    const wrapper = render(<Input />)
+  it('should render placeholder text', () => {
+    const wrapper = mount(<Input placeholder='lol' />)
+    const input = wrapper.find('input')
+    expect(input).to.have.prop('placeholder', 'lol')
   })
 })

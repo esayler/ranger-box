@@ -136,8 +136,8 @@ export default class App extends React.Component {
       <div>
         <Header
           name={this.state.name}
-          handleSettingsButtonClick={() => browserHistory.push('/settings')}
-          buttonText='Settings'
+          handleSettingsButtonClick={() => browserHistory.push((this.props.location.pathname === '/settings' ? '/jokes' : '/settings'))}
+          buttonText={this.props.location.pathname === '/settings' ? 'Jokes' : 'Settings'}
         />
         <Joke
           className='random-joke-box'

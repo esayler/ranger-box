@@ -15,10 +15,17 @@ var expect = chai.expect
 describe('<Settings />', () => {
   let wrapper
 
+  let location = {
+    pathname: '/settings',
+    search: '',
+    query: '',
+    state: ''
+  }
+
   describe('when visiting the settings page', () => {
     beforeEach(() => {
       wrapper = mount(
-        <App children={<Settings />} />
+        <App children={<Settings />} location={location} />
       )
     })
 
@@ -50,7 +57,7 @@ describe('<Settings />', () => {
 
     beforeEach(() => {
       wrapper = mount(
-        <App children={<Settings />} />
+        <App children={<Settings />} location={location} />
       )
       nameInputField = wrapper.find('.input .name-input')
       setNameBtn = wrapper.find('.btn .btn-set-name')
@@ -85,7 +92,7 @@ describe('<Settings />', () => {
 
     beforeEach(() => {
       wrapper = mount(
-        <App children={<Settings />} />
+        <App children={<Settings />} location={location} />
       )
       nameInputField = wrapper.find('.input .name-input')
       setNameBtn = wrapper.find('.btn .btn-set-name')
@@ -112,7 +119,7 @@ describe('<Settings />', () => {
 
     beforeEach(() => {
       wrapper = mount(
-        <App children={<Settings parentalControls={false} />} />
+        <App children={<Settings parentalControls={false} />} location={location} />
       )
       toggleNSFW = wrapper.find('.checkbox')
     })

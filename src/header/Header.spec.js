@@ -13,7 +13,7 @@ expect = chai.expect
 
 describe('<Header />', () => {
   it('should render text', () => {
-    const wrapper = shallow(<Header name=''/>)
+    const wrapper = shallow(<Header name='' />)
     expect(wrapper.find('h1')).to.contain.text('Joke Machine')
   })
 })

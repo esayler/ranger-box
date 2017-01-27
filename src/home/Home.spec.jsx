@@ -12,7 +12,8 @@ var expect = chai.expect
 // let should = chai.should()
 
 describe('<Home />', () => {
-  it.skip('should render text', () => {
+  it('should render text message "Click Get Jokes!"', () => {
     const wrapper = render(<Home />)
+    expect(wrapper).to.contain.text('Click Get Jokes!')
   })
 })
