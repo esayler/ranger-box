@@ -3,7 +3,7 @@ import Button from '../button/Button'
 import Input from '../input/Input'
 
 export default class Settings extends React.Component {
-  constructor() {
+  constructor () {
     super()
   }
   render () {

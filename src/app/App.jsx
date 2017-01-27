@@ -6,6 +6,7 @@ import Joke from '../joke/Joke'
 import { browserHistory } from 'react-router'
 import some from 'lodash/some'
 import reject from 'lodash/reject'
+import axios from 'axios'
 
 export default class App extends React.Component {
   constructor () {
@@ -17,11 +18,6 @@ export default class App extends React.Component {
       jokes: [],
       gotRandomJoke: false,
       nameValue: '',
-      randomJoke: {
-        value: {
-          joke: ''
-        }
-      },
       name: {
         first: '',
         last: ''
@@ -37,7 +33,7 @@ export default class App extends React.Component {
     this.isStarred = this.isStarred.bind(this)
   }
 
-  componentDidMount () {
+  componentWillMount () {
     this.setState({ randomJoke: this.getRandomJokes() })
   }
 
@@ -54,17 +50,18 @@ export default class App extends React.Component {
       ? `&firstName=${firstName}&lastName=${lastName}`
       : ''
 
-    fetch(`http://api.icndb.com/jokes/random/${str}?escape=javascript${exclude}${name}`)
-      .then(response => {
-        response.json()
-          .then(data => {
-            if (num === 1 && !this.state.gotRandomJoke) {
-              this.setState({randomJoke: data, gotRandomJoke: true})
-            } else {
-              this.setState({jokes: data.value})
-            }
-          })
-      })
+    axios.get(`http://api.icndb.com/jokes/random/${str}?escape=javascript${exclude}${name}`, {
+    })
+    .then(response => {
+      if (num === 1 && !this.state.gotRandomJoke) {
+        this.setState({randomJoke: response.data.value, gotRandomJoke: true})
+      } else {
+        this.setState({jokes: response.data.value})
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 
   goToLink (path) {
@@ -141,12 +138,16 @@ export default class App extends React.Component {
   render () {
     return (
       <div>
-        <Header name={this.state.name} handleSettingsButtonClick={this.goToLink.bind(this, '/settings')} />
+        <Header
+          name={this.state.name}
+          handleSettingsButtonClick={this.goToLink.bind(this, '/settings')}
+          buttonText='Settings'
+        />
         <Joke
           className='random-joke-box'
-          data={this.state.randomJoke ? this.state.randomJoke.value : null}
+          data={this.state.randomJoke}
           saveFavorite={this.saveFavorite}
-          starred={this.isStarred(this.state.favorites, this.state.randomJoke.value)}
+          // starred={this.isStarred(this.state.favorites, this.state.randomJoke.value)}
         />
         <div className='user-input'>
           <Button
@@ -170,10 +171,12 @@ export default class App extends React.Component {
         </div>
         {React.cloneElement(this.props.children,
           { jokes: this.state.jokes,
+            handleClick: this.handleClick,
+            numJokesToGet: this.state.numJokesToGet,
             favorites: this.state.favorites,
             saveFavorite: this.saveFavorite,
-            name: this.state.name,
             setName: this.setName,
+            name: this.state.name,
             nameValue: this.state.nameValue,
             resetName: this.resetName,
             updateNameDraftState: this.updateNameDraftState,
